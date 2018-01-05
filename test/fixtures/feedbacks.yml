@@ -1,0 +1,9 @@
+one:
+  name1: MyString
+  body: MyText
+  comment: one
+
+two:
+  name1: MyString
+  body: MyText
+  comment: two
