@@ -1,11 +1,8 @@
 Rails.application.routes.draw do
   get 'welcome/index'
-
-  resources :articles do
-    resources :comments do
-    	resources :feedbacks
-    end
+	resources :articles do
+    resources :comments
   end
- 
-  root 'welcome#index'
+  resources :comments
+ 	root 'welcome#index'
 end

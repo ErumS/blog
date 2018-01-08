@@ -1,8 +1,7 @@
 <p>
   <strong>Title:</strong>
   <%= @article.title %>
-</p>
- 
+</p> 
 <p>
   <strong>Text:</strong>
   <%= @article.text %>
@@ -13,34 +12,6 @@
  
 <h2>Add a comment:</h2>
 <%= render 'comments/form' %>
-
-<h2>Feedbacks:</h2>
-<% @article.comments.each do |feedback| %>
-  <p>
-    <strong>Name:</strong>
-    <%= feedback.name1 %>
-  </p>
- 
-  <p>
-    <strong>Feedback:</strong>
-    <%= feedback.body %>
-  </p>
-<% end %>
-
-<h3>Feedback</h3>
-<%= form_with(model: [ @article, @article.comment.feedbacks.build ], local: true) do |form| %>
-  <p>
-    <%= form.label :name1 %><br>
-    <%= form.text_field :name1 %>
-  </p>
-  <p>
-    <%= form.label :body %><br>
-    <%= form.text_area :body %>
-  </p>
-  <p>
-    <%= form.submit %>
-  </p>
-<% end %>
  
 <%= link_to 'Edit', edit_article_path(@article) %> |
 <%= link_to 'Back', articles_path %>

@@ -1,18 +1,23 @@
 class CommentsController < ApplicationController
-
-  http_basic_authenticate_with name: "dhh", password: "abc", only: :destroy
-
+  skip_before_action :verify_authenticity_token
+  def show
+  end
   def create
     @article = Article.find(params[:article_id])
     @comment = @article.comments.create(comment_params)
-    redirect_to article_path(@article)
-  end
- 
+    respond_to do |format|
+      format.json {render json: {status: 'Success', message: 'Comment', data: @comment}, status: :ok}
+      format.html {redirect_to article_path(@article)}
+    end  
+  end 
   def destroy
     @article = Article.find(params[:article_id])
     @comment = @article.comments.find(params[:id])
     @comment.destroy
-    redirect_to article_path(@article)
+    respond_to do |format|
+      format.json {render json: {status: 'SUCCESS', message: 'Destroyed comment', data: @comment}, status: :ok}
+      format.html {redirect_to article_path(@article)}
+    end
   end
  
   private
